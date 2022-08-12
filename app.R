@@ -44,8 +44,6 @@ default_species <- NULL
 target_species <- data_sf %>% distinct(species_name)
 filter_species <-"tortue"
 
-################################################################ USER INTERFACE ###################################################################################################################################################
-
 
 ################################################################ USER INTERFACE ###################################################################################################################################################
 
@@ -208,7 +206,7 @@ server <- function(input, output, session) {
     # df <- data_sf %>%  filter(st_within(geometry,st_as_sfc(session_polygon, crs = 4326),sparse = FALSE)[, 1]) 
     df <- data()  
     
-    mymap <-leaflet(data=df,options = leafletOptions(minZoom = 10, maxZoom = 40)) %>% 
+    mymap <-leaflet(data=df,options = leafletOptions(minZoom = 15, maxZoom = 100)) %>% 
       clearPopups()  %>% 
       # https://leaflet-extras.github.io/leaflet-providers/preview/ 
       addProviderTiles("Esri.OceanBasemap", group = "ESRI") %>%
