@@ -20,13 +20,9 @@ setwd("~/Desktop/CODES/Shiny_Darwin_Core_viewer/")
 if(!file.exists("./data/reef_images.rds")){
   githubURL <- ("https://raw.githubusercontent.com/juldebar/Shiny_Darwin_Core_viewer/main/data/reef_images.rds")
   download.file(githubURL,"reef_images.rds", method="curl")
-  data_dwc <- readRDS("reef_images.rds")
-  # data_dwc <- as_tibble(read.csv("/home/julien/Downloads/0065082-210914110416597.csv",sep="\t"))  %>% 
-  #   dplyr::select(gbifID,scientificName,family,eventDate,year,individualCount,recordedBy,decimalLatitude,decimalLongitude,depth)  %>% 
-  #   st_as_sf(.,coords=c("decimalLongitude","decimalLatitude"),crs=4326) 
-  # saveRDS(data_dwc,"./data/dwc.rds")
+  data_sf <- readRDS("reef_images.rds")
 }else{
-  data_dwc <- readRDS("./data/reef_images.rds")
+  data_sf <- readRDS("./data/reef_images.rds")
 }
 
 
@@ -209,7 +205,7 @@ server <- function(input, output, session) {
       
     )
     
-    # df <- data_dwc %>%  filter(st_within(geometry,st_as_sfc(session_polygon, crs = 4326),sparse = FALSE)[, 1]) 
+    # df <- data_sf %>%  filter(st_within(geometry,st_as_sfc(session_polygon, crs = 4326),sparse = FALSE)[, 1]) 
     df <- data()  
     
     mymap <-leaflet(data=df,options = leafletOptions(minZoom = 10, maxZoom = 40)) %>% 
