@@ -18,7 +18,7 @@ library(RPostgreSQL)
 ############################################################ DATA and FILTER ########################################################################################################################################################################
 setwd("~/Desktop/CODES/Shiny_Darwin_Core_viewer/")
 if(!file.exists("./data/reef_images.rds")){
-  githubURL <- ("https://raw.githubusercontent.com/juldebar/darwin_core_viewer/master/data/reef_images.rds")
+  githubURL <- ("https://raw.githubusercontent.com/juldebar/Shiny_Darwin_Core_viewer/main/data/reef_images.rds")
   download.file(githubURL,"reef_images.rds", method="curl")
   data_dwc <- readRDS("reef_images.rds")
   # data_dwc <- as_tibble(read.csv("/home/julien/Downloads/0065082-210914110416597.csv",sep="\t"))  %>% 
@@ -26,7 +26,7 @@ if(!file.exists("./data/reef_images.rds")){
   #   st_as_sf(.,coords=c("decimalLongitude","decimalLatitude"),crs=4326) 
   # saveRDS(data_dwc,"./data/dwc.rds")
 }else{
-  data_dwc <- readRDS("../data/reef_images.rds")
+  data_dwc <- readRDS("./data/reef_images.rds")
 }
 
 
